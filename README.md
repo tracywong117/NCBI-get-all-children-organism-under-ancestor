@@ -1,5 +1,10 @@
 # NCBI-get-all-children-organism-under-ancestor
-Use the Pyton scripts as follow to retrieve all children organism under an ancestor in NCBI taxonomy.
+Goal: retrieve all children organism under an ancestor in NCBI taxonomy
+### 1a. Download preprocessed data (last update: 1 Feb 2024) [here](https://huggingface.co/datasets/tracywong117/NCBI-Taxonomy)
+Download `taxonomy_with_all_children.csv` which is the csv you may need to analyze NCBI taxonomy tree.
+
+### 1b. Or download latest NCBI taxonomy and preprocess data by yourself
+You can also use the Pyton scripts as follow to download latest taxonomy from NCBI FTP and preprocess the data. 
 
 1. Download taxdmp.zip from https://ftp.ncbi.nlm.nih.gov/pub/taxonomy/.
 2. Unzip taxdmp.zip and place `nodes.dmp` and `names.dmp` in this folder.
@@ -11,13 +16,13 @@ Use the Pyton scripts as follow to retrieve all children organism under an ances
 
 `taxonomy_with_all_children.csv` is the final csv you may need to analyze NCBI taxonomy tree. 
 
-## query.py:
+## 2. query.py:
 - get all children of any organism
 - after getting all scientific_names of all children of an organism (ancestor), you can retrieve all SRA data related to all organisms with the same ancestor from [BigQuery](https://cloud.google.com/bigquery) by running the generated SQL in BigQuery
 
 Note: NCBI hosts SRA data in BigQuery. It is convenient for large amount of data retrieval.
 
-## Example of retrieval of SRA data from BigQuery
+## Remark: Example of retrieval of SRA data from BigQuery
 ```SQL
 SELECT *
 FROM `nih-sra-datastore.sra.metadata`,
