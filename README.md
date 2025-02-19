@@ -16,6 +16,21 @@ You can also use the Pyton scripts as follow to download latest taxonomy from NC
 
 `taxonomy_with_all_children.csv` is the final csv you may need to analyze NCBI taxonomy tree. 
 
+#### Alternative to Step 6: Using create_library_index.py
+Instead of get_all_children_from_tax.py, you can use create_library_index.py to generate hierarchical library indices for each node in the taxonomy.
+A library index is a hierarchical numbering system that encodes the parent-child relationships in the taxonomy tree. It assigns each node an index that reflects its position in the hierarchy.
+
+Example:
+```
+2 is child of 1: 1.2
+3 is child of 1: 1.3
+4 is child of 2: 1.2.4
+```
+Benefits: We can Retrieve all descendants of an ancestor by filtering for library indices that start with the ancestor's library index.
+        
+Run `python create_library_index.py` to get `taxonomy_with_library_index.csv`
+Run `query.py --ancestor 8782 --method library` to use `taxonomy_with_library_index.csv`
+
 ## 2. query.py:
 - get all children of any organism
 - after getting all scientific_names of all children of an organism (ancestor), you can retrieve all SRA data related to all organisms with the same ancestor from [BigQuery](https://cloud.google.com/bigquery) by running the generated SQL in BigQuery

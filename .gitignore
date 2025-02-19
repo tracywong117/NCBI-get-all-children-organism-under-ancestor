@@ -5,3 +5,5 @@ names.csv
 taxonomy.csv
 taxonomy_with_direct_children.csv
 taxonomy_with_all_children.csv
+taxonomy_with_library_index.csv
+*.ipynb
